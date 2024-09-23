@@ -26,6 +26,7 @@ class Article < ApplicationRecord
 	validate :validate_title_and_content_length
 
 	has_many :comments, dependent: :destroy
+	has_many :likes, dependent: :destroy
 	belongs_to :user
 
 	def display_created_at
@@ -34,6 +35,10 @@ class Article < ApplicationRecord
 
 	def author_name
 		user.display_name
+	end
+
+	def like_count
+		likes.count
 	end
 
 	private
